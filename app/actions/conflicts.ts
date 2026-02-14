@@ -56,8 +56,8 @@ export async function detectFlowConflicts() {
   // Compare each pair of flows
   for (let i = 0; i < flows.length; i++) {
     for (let j = i + 1; j < flows.length; j++) {
-      const flowA = flows[i];
-      const flowB = flows[j];
+      const flowA = flows[i] as any;
+      const flowB = flows[j] as any;
 
       // Check if they share at least one channel
       const sharedChannels = flowA.channels.filter((ch: string) =>
