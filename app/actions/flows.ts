@@ -21,7 +21,7 @@ export async function getFlows() {
   return data;
 }
 
-export async function getFlow(id: string) {
+export async function getFlow(id: string): Promise<any> {
   const { data, error } = await supabase
     .from("flows")
     .select(`
@@ -45,7 +45,7 @@ export async function getFlow(id: string) {
     return null;
   }
 
-  return data;
+  return data as any;
 }
 
 export async function createFlow(formData: {

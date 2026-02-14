@@ -22,7 +22,7 @@ export async function getProducts() {
   return data;
 }
 
-export async function getProduct(id: string) {
+export async function getProduct(id: string): Promise<any> {
   const { data, error } = await supabase
     .from("products")
     .select(`
@@ -39,7 +39,7 @@ export async function getProduct(id: string) {
     return null;
   }
 
-  return data;
+  return data as any;
 }
 
 export async function createProduct(formData: {

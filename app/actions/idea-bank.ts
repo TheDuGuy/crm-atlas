@@ -104,6 +104,15 @@ export async function updateIdea(
     last_used_at: string;
     owner: string;
     related_flow_id: string;
+    reasoning: string;
+    hypothesis: string;
+    what_to_send: string;
+    why_now_trigger: string;
+    measurement_plan: string;
+    guardrails: string;
+    variants: string;
+    prerequisites: string;
+    follow_ups: string;
   }>
 ) {
   const { data, error } = await (supabase as any)
@@ -153,8 +162,8 @@ export async function getTopIdeas(limit: number = 5) {
   }
 
   // Calculate impact/effort ratio and sort
-  return data
-    .map((idea) => ({
+  return (data as any[])
+    .map((idea: any) => ({
       ...idea,
       ratio: idea.expected_impact && idea.effort ? idea.expected_impact / idea.effort : 0,
     }))
@@ -455,21 +464,22 @@ export async function convertIdeaToOpportunity(ideaId: string) {
   }
 
   // Create opportunity from idea
+  const ideaData = idea as any;
   const opportunity = await createOpportunity({
-    title: idea.title,
-    description: idea.copy_notes || undefined,
-    product_id: idea.product_id || undefined,
-    impact: idea.expected_impact || undefined,
-    effort: idea.effort || undefined,
-    confidence: idea.confidence || undefined,
+    title: ideaData.title,
+    description: ideaData.copy_notes || undefined,
+    product_id: ideaData.product_id || undefined,
+    impact: ideaData.expected_impact || undefined,
+    effort: ideaData.effort || undefined,
+    confidence: ideaData.confidence || undefined,
     status: "idea",
-    hypothesis: idea.hypothesis || undefined,
-    audience_logic: idea.audience_logic || undefined,
-    proposed_solution: idea.what_to_send || undefined,
-    primary_kpi: idea.measurement_plan || undefined,
-    guardrails: idea.guardrails || undefined,
-    data_requirements: idea.prerequisites || undefined,
-    execution_notes: idea.follow_ups || undefined,
+    hypothesis: ideaData.hypothesis || undefined,
+    audience_logic: ideaData.audience_logic || undefined,
+    proposed_solution: ideaData.what_to_send || undefined,
+    primary_kpi: ideaData.measurement_plan || undefined,
+    guardrails: ideaData.guardrails || undefined,
+    data_requirements: ideaData.prerequisites || undefined,
+    execution_notes: ideaData.follow_ups || undefined,
   });
 
   // Update idea to link to the new opportunity

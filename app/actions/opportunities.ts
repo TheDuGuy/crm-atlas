@@ -108,7 +108,7 @@ export async function updateOpportunity(
 }
 
 // Helper: Get or create product by name
-async function getOrCreateProduct(name: string, description?: string) {
+async function getOrCreateProduct(name: string, description?: string): Promise<any> {
   let { data: product } = await supabase
     .from("products")
     .select("id, name")
@@ -124,7 +124,7 @@ async function getOrCreateProduct(name: string, description?: string) {
     product = newProduct;
   }
 
-  return product;
+  return product as any;
 }
 
 // Helper: Find flow by keyword matching
@@ -136,7 +136,7 @@ async function findFlowByKeywords(keywords: string[]) {
 
   if (!flows) return null;
 
-  for (const flow of flows) {
+  for (const flow of flows as any[]) {
     const flowNameLower = flow.name.toLowerCase();
     if (keywords.some(keyword => flowNameLower.includes(keyword.toLowerCase()))) {
       return flow;
