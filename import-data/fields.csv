@@ -1,0 +1,50 @@
+product,field_name,description,format,live
+Payment Links,TapToPay.ttpEnabled,Has a member been enabled in LD for T2P,1= Yes 0 = No,true
+Payment Links,TapToPay.ttpOnboardedDate,IGNORE,MM/DD/YY,false
+Payment Links,TapToPay.ttpLatestTransactionDate,The date of the most recent T2P transaction regardless of its status,MM/DD/YY,true
+Payment Links,TapToPay.ttpLatestTransactionAt,The date of the most recent T2P transaction regardless of its status,MM/DD/YY,true
+Payment Links,TapToPay.ttpTransactionCount,The number of completed transactions a user has made,number,true
+Payment Links,TapToPayInstallationSuccessful,EVENT,EVENT,true
+Payment Links,TaptoPayttpLatestTakeRate,The take rate assigned to the member,Number,true
+Card Reader,CardReader.eligible,Member is eligible for POS,Eligible vs Not,true
+Card Reader,CardReader.enabled,If a member has been enabled for Card Reader,1= Yes 0 = No,true
+Card Reader,CardReader.enabled_date,The date a member was enabled for Card Reader,MM/DD/YY,true
+Card Reader,CardReader.order_date,The date a member has ordered their Card reader,MM/DD/YY,true
+Card Reader,CardReader.order_status_delivered,Has the card reader been delivered?,MM/DD/YY,true
+Card Reader,CardReader.order_status_in_transit,Is the card reader in transit?,1= Yes 0 = No,true
+Card Reader,CardReader.order_status_paid,Has the member paid for the card reader?,1= Yes 0 = No,true
+Card Reader,CardReader.order_status_awaiting_payment,Are we awaiting payment for the card reader?,1= Yes 0 = No,true
+Card Reader,CardReader.device1,Has the member been enabled for the card reader?,Card Reader,true
+Card Reader,CardReader.order_priceOffering_device1,The cost of the card reader,number,true
+Card Reader,CardReader.device2,Has the reader been embedded to in their plus,Card Reader Plus,true
+Card Reader,CardReader.order_priceOffering_device2,cost of the card reader plus,number,true
+Card Reader,CardReader.daysSinceLastTransaction,Number of days since the card reader was last used,number,true
+Card Reader,CardReader.lastTransactionValue,The value of the last transaction on the device,number,true
+Card Reader,CardReader.cashedOutOnDoneDate,Has a member onboarded to churn date,1= Yes 0 = No,true
+Card Reader,CardReader.potentialChurn,Is the member likely to churn,yesno,true
+Payment Links,PaymentLinksEligibility.eligible,Member is eligible for Payment Links,1= Yes 0 = No,true
+Payment Links,PaymentLinksEligibility.eligible_date,Date the member became PL eligible,ddmmyy HH:MM:SS,true
+Payment Links,paymentLink.paylink_onboardingDate,Date member onboarded to payment links this field can be used for identifying Adyen onboarding,ddmmyy HH:MM:SS,true
+Payment Links,paymentLink.paymentLink_eligibilityStatus,IGNORE,text,false
+Payment Links,paymentLink.unpaidPaylinks_created_7to30days_ago,Number of payment links that have been created but not paid in the last 7 to 30 days,Number,true
+Payment Links,paymentLink.firstPaylink_createdDate,The date a members first payment link was created,ddmmyy HH:MM:SS,true
+Payment Links,paymentLink.lastPaylink_createdDate,The date a members most recent payment link was created,HH:MM:SS,true
+Payment Links,paymentLink.count_of_paylinks_created_total,The total number of payment links a member has created,Number,true
+Payment Links,paymentLink.count_of_paylinks_paid_total,The total number of payment links a member has created that have not been paid,Number,true
+Payment Links,paymentLink.count_of_unpaid_paylinks,The total number of payment links a member has created that have not been paid,Number,true
+Payment Links,paymentLink.count_of_paylinks_created_last_1_month,The total number of payment links created by a member in the last one full month,Number,true
+Payment Links,paymentLink.count_of_paylinks_paid_last_1_month,The total number of payment links paid by a member in the last one full month,Number,true
+Payment Links,paymentLink.count_of_paylinks_created_last_3_months,The total number of payment links created by a member in the last three full months,Number,true
+Payment Links,paymentLink.count_of_paylinks_paid_last_3_months,The total number of payment links paid by a member in the last three full months,Number,true
+Payment Links,paymentLink.count_of_paylinks_created_last_6_months,The total number of payment links created by a member in the last six full months,Number,true
+Payment Links,paymentLink.count_of_paylinks_paid_last_6_months,The total number of payment links paid by a member in the last six full months,Number,true
+Payment Links,paymentLink.paid_paylink_with_highest_value,A members highest value payment link that has been paid,Number to 2 decimal places,true
+Payment Links,paymentLink.last_unpaid_paylink_created_at,The date of the most recent paylink with the status unpaid,Number to 2 decimal places,true
+Payment Links,paymentLink.average_value_of_created_paylinks,The Average value of a members payment links with the status Paid,Number to 2 decimal places,true
+Payment Links,paymentLink.average_value_of_paid_paylinks,Average time it takes the members payment link to be paid out including clearing time,HH:MM,true
+Payment Links,paymentLink.average_days_taken_to_receive_payment,Average time it takes the members payment link to be paid out including clearing time,HH:MM,true
+TIC,TideInstantCheckout.noOfProductsAdded,How many products has the member added,Number,true
+TIC,TideInstantCheckout.ticCount0fLinksCreated,How many TIC links has a member,Number,true
+TIC,TideInstantCheckout.ticEnabled,Has a member been enabled for TIC?,1= Yes 0 = No,true
+TIC,TideInstantCheckout.ticOnboarded,Has the member onboarded to TIC?,1= Yes 0 = No,true
+TIC,TideInstantCheckout.ticLatestTransactionAt,The last created transaction,date,true

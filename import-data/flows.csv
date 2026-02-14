@@ -1,0 +1,31 @@
+product,flow_name,purpose,description,trigger_type,frequency,channels,live,sto,iterable_id
+Payment Links,Share Payment Details,activation,Sent to members who have created a PIL in the past but not in the last 30 days,scheduled,Every 30 days,email,true,false,12345
+Payment Links,Lapsed Linkers,retention,Sent to members who have created a PIL in the past but not in the last 30 days once every 60 days,scheduled,Daily,email,true,true,325712
+Payment Links,Payment Links Monthly report,activation,A wrap up of payment links usage over the last 30 days,scheduled,Every 30 days,email,true,true,682905
+TIC,TIC Acquisition,activation,Sent to members to inform them about what TIC is and encourage usage,event_based,Daily,email+in_app,true,true,518795
+Payment Links,Sell More Online,activation,You're doing great with Payment Links why not pay less with Sell More online,event_based,Daily,email+in_app,true,true,703709
+Payment Links,Sell More Online,activation,You're doing great with Payment Links why not pay less with Sell More online,scheduled,Daily,email+in_app+push,true,true,742632
+Payment Links,Sell More Online,activation,You're doing great with Payment Links why not pay less with Sell More online,scheduled,Schedule,email+in_app+push,true,true,755554
+Payment Links,PBL Prize Draw,activation,Unpaid links need a nudge Members are encouraged to give a gentle reminder encouraging payment,scheduled,Schedule,email+in_app,true,true,761850
+Payment Links,PBL Winback,retention,As a Tide member you still have up to 3 free Payment Links installations,scheduled,Schedule,email+in_app,true,true,744350
+Tools/Boosts,Sell More Online Welcome,activation,Welcome Plane to all Sell More Online new subscribers,event_based,Daily,email+in_app+push,true,true,780954
+Tools/Boosts,Sell More Online Trial Ending,retention,Informs members who have signed up for a free trial that their trial is ending,event_based,Daily,email+in_app,true,true,772907
+Tools/Boosts,Next Day Settlement Acquisition,activation,An acquisition flow encouraging Payment Links users to subscribe to Next Day Settlement,event_based,Daily,email+in_app,true,true,699549
+TTP,Tap to pay encouragement,activation,Comms sent to members after they have completed their 1st-5th transaction encouraging repet usage,event_based,Profile updated,email+push+in_app,true,true,560345
+TTP,Tap to Pay Activation,activation,Comms send to members after they have sucessfully installed TTP,event_based,Custom event,email+in_app,true,true,545912
+TTP,Tap to Pay Lapsed,retention,Workflow for members who have completed a TTP transaction in the past but not in the last 14 days,event_based,Daily,email+push+in_app,true,true,550825
+TTP,Next Day Settlement Acquisition,activation,An acquisition flow encouraging Tap to Pay users to subscribe to Next Day Settlement,event_based,Daily,email+in_app,true,true,699549
+Card Reader,POS Lapsed Users,retention,Workflow sent to members who are lapsed to encourage when to use their device,event_based,Daily,email+push,true,false,427522
+Card Reader,POS Activation,activation,Gives embers a guide to their device how to use and set it up,event_based,Profile updated,email+push,true,false,452209
+Card Reader,POS Evergreen IAN,activation,Evergreen IAN telling all POS eligible members about card readers,event_based,Event based,email+push+in_app,true,false,603086
+Card Reader,POS Acquisition 1st,activation,Comms encouraging members to order a device sent when they become POS eligible,event_based,Daily,email+push+in_app,true,false,526273
+Card Reader,POS Acquisition 2nd,activation,Tel members their PH once their device is delivered,event_based,Profile updated,in_app,true,false,553285
+Card Reader,POS Acquisition 2nd,activation,Encourage eligible members to order a POS device,event_based,Daily,email+push,true,false,715197
+Card Reader,PCSoFS,activation,Members who have drawn down funds in the last 3 months to encourage them to use tide's payment solutions,event_based,Monthly,email+push+in_app,true,false,674760
+Card Reader,Sell in Person,activation,Members who are card reader eligible & have created 10 or more TTP TapToPayttpTransactionCount,event_based,Daily,email+push+in_app,true,false,703053
+Card Reader,POS insufficient funds - TRN,activation,Members who have purchased a device but do not have funds in their BCA,event_based,Daily,email,true,false,438251
+Card Reader,PCSoFS,activation,Members who have drawn down funds in the last 3 months to encourage them to use tide's payment solutions,event_based,Monthly,email+push+in_app,true,false,674760
+Card Reader,Sell in Person,activation,Members who are card reader eligible & have created 10 or more TTP TapToPayttpTransactionCount,event_based,Daily,email+push+in_app,true,false,703053
+Card Reader,POS Acquisition 25,activation,Comms encouraging members to order a device,event_based,Daily,email+push+in_app,false,true,715197
+Sell in Person,Sell in Person Welcome,activation,Comms welcoming new Sell in Person Subscribers and encouraging them to use their tool,event_based,Custom event,email+in_app+push,true,false,786237
+Tools/Boosts,POS OTM,activation,Comms welcoming new Tide members introducing POS services and encouraging them to order one,event_based,Daily,email,true,false,788358
