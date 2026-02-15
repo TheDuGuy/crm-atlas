@@ -715,7 +715,7 @@ export async function seedFullOpportunities() {
 
     // Group by title and find duplicates
     const titleGroups = new Map<string, any[]>();
-    for (const opp of allOpportunities || []) {
+    for (const opp of (allOpportunities as any[]) || []) {
       if (!titleGroups.has(opp.title)) {
         titleGroups.set(opp.title, []);
       }
