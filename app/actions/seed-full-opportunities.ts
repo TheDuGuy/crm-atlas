@@ -783,7 +783,7 @@ export async function seedFullOpportunities() {
         }
 
         // Update opportunity if not already populated (check problem field)
-        if (!existingOpp.problem || existingOpp.problem.trim() === "") {
+        if (!(existingOpp as any).problem || (existingOpp as any).problem.trim() === "") {
           const { error: updateError } = await supabase
             .from("opportunities")
             .update({
@@ -801,7 +801,7 @@ export async function seedFullOpportunities() {
               execution_notes: opportunity.execution_notes,
               risks_mitigations: opportunity.risks_mitigations,
             })
-            .eq("id", existingOpp.id);
+            .eq("id", (existingOpp as any).id);
 
           if (updateError) {
             console.error(`Failed to update opportunity "${opportunity.title}": ${updateError.message}`);
@@ -819,7 +819,7 @@ export async function seedFullOpportunities() {
         const { data: existingExp, error: expFetchError } = await supabase
           .from("experiments")
           .select("id")
-          .eq("opportunity_id", existingOpp.id)
+          .eq("opportunity_id", (existingOpp as any).id)
           .maybeSingle();
 
         if (expFetchError) {
@@ -833,7 +833,7 @@ export async function seedFullOpportunities() {
             .from("experiments")
             .insert({
               title: experiment.title,
-              opportunity_id: existingOpp.id,
+              opportunity_id: (existingOpp as any).id,
               design_type: experiment.design_type,
               eligibility: experiment.eligibility,
               treatment: experiment.treatment,
