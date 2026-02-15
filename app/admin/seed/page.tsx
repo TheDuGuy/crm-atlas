@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { seedOpportunitiesAndSignals } from "@/app/actions/opportunities";
 import { CheckCircle, XCircle, Loader2, Database } from "lucide-react";
+import { SeedFullOpportunitiesButton } from "@/components/seed-full-opportunities-button";
+import { SeedDetailedIdeasButton } from "@/components/seed-detailed-ideas-button";
 
 export default function AdminSeedPage() {
   const [email, setEmail] = useState("");
@@ -205,6 +207,24 @@ export default function AdminSeedPage() {
                 <li>message_fatigue_score (field) - Prevent over-messaging</li>
               </ul>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Database className="h-5 w-5" />
+            Advanced Seeding
+          </CardTitle>
+          <CardDescription>
+            Additional seeding operations for detailed data population
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-3">
+            <SeedFullOpportunitiesButton />
+            <SeedDetailedIdeasButton />
           </div>
         </CardContent>
       </Card>
