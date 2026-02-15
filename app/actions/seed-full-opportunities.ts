@@ -800,7 +800,7 @@ export async function seedFullOpportunities() {
               data_requirements: opportunity.data_requirements,
               execution_notes: opportunity.execution_notes,
               risks_mitigations: opportunity.risks_mitigations,
-            })
+            } as any)
             .eq("id", (existingOpp as any).id);
 
           if (updateError) {
@@ -846,7 +846,7 @@ export async function seedFullOpportunities() {
               success_criteria: experiment.success_criteria,
               notes: experiment.notes,
               status: "draft",
-            });
+            } as any);
 
           if (createExpError) {
             console.error(`Failed to create experiment for "${opportunity.title}": ${createExpError.message}`);
