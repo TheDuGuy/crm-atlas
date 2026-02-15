@@ -34,7 +34,8 @@ export function SeedFullOpportunitiesButton() {
         alert(message);
         router.refresh();
       } else {
-        alert(`Failed to seed: ${result.error}\n\nCheck console for details.`);
+        const errorMsg = result.errors?.length ? result.errors.join("\n") : "Unknown error";
+        alert(`Failed to seed:\n\n${errorMsg}\n\nCheck console for details.`);
       }
     } catch (error) {
       console.error("Error seeding opportunities:", error);
