@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Package, Workflow, Shield, Lightbulb, Beaker, Sparkles, Upload, Search } from "lucide-react";
+import { LayoutDashboard, Package, Workflow, Shield, Lightbulb, Beaker, Sparkles, Upload, Search, Activity } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/products", label: "Products", icon: Package },
   { href: "/flows", label: "Flows", icon: Workflow },
+  { href: "/health", label: "Health", icon: Activity },
   { href: "/conflicts", label: "Conflicts", icon: Shield },
   { href: "/opportunities", label: "Opportunities", icon: Lightbulb },
   { href: "/experiments", label: "Experiments", icon: Beaker },
@@ -35,15 +36,7 @@ export function Navigation() {
     <nav className="border-b bg-white/50 backdrop-blur-sm dark:bg-slate-900/50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-                <Workflow className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                CRM Atlas
-              </span>
-            </Link>
+          <div className="flex items-center space-x-1">
             <div className="hidden md:flex space-x-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
