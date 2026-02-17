@@ -14,6 +14,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MissingSignalsTab } from "@/components/missing-signals-tab";
+import { supabase } from "@/lib/supabase/client";
+import { getMissingSignalsCount } from "@/app/actions/missing-signals";
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -26,6 +29,16 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const fields = product.fields || [];
   const events = product.events || [];
   const flows = product.flows || [];
+
+  // Fetch opportunities for this product
+  const { data: opportunities } = await supabase
+    .from('opportunities')
+    .select('id, title')
+    .eq('product_id', id)
+    .order('title');
+
+  // Get missing signals count
+  const missingSignalsCount = await getMissingSignalsCount(id);
 
   const purposeColors: Record<string, string> = {
     activation: "bg-blue-100 text-blue-800",
@@ -52,7 +65,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         )}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader>
             <CardTitle className="text-sm font-medium text-slate-600">Fields</CardTitle>
@@ -77,6 +90,21 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <div className="text-3xl font-bold">{flows.length}</div>
           </CardContent>
         </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-sm font-medium text-slate-600">Missing Signals</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-2">
+              <div className="text-3xl font-bold">{missingSignalsCount}</div>
+              {missingSignalsCount > 0 && (
+                <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
+                  ⚠
+                </Badge>
+              )}
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <Tabs defaultValue="flows" className="space-y-6">
@@ -84,6 +112,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <TabsTrigger value="flows">Flows ({flows.length})</TabsTrigger>
           <TabsTrigger value="fields">Fields ({fields.length})</TabsTrigger>
           <TabsTrigger value="events">Events ({events.length})</TabsTrigger>
+          <TabsTrigger value="missing-signals">
+            Missing Signals ({missingSignalsCount})
+            {missingSignalsCount > 0 && <span className="ml-1">⚠</span>}
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="flows">
@@ -237,6 +269,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               )}
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="missing-signals">
+          <MissingSignalsTab productId={id} opportunities={opportunities || []} />
         </TabsContent>
       </Tabs>
     </div>
