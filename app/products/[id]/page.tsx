@@ -33,8 +33,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   // Fetch opportunities for this product
   const { data: opportunities } = await supabase
     .from('opportunities')
-    .select('id, title')
+    .select('id, title, status, impact, effort, confidence')
     .eq('product_id', id)
+    .order('impact', { ascending: false, nullsFirst: false })
     .order('title');
 
   // Get missing signals count
@@ -65,7 +66,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         )}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-5">
         <Card>
           <CardHeader>
             <CardTitle className="text-sm font-medium text-slate-600">Fields</CardTitle>
@@ -92,6 +93,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </Card>
         <Card>
           <CardHeader>
+            <CardTitle className="text-sm font-medium text-slate-600">Opportunities</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold">{opportunities?.length || 0}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
             <CardTitle className="text-sm font-medium text-slate-600">Missing Signals</CardTitle>
           </CardHeader>
           <CardContent>
@@ -112,6 +121,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <TabsTrigger value="flows">Flows ({flows.length})</TabsTrigger>
           <TabsTrigger value="fields">Fields ({fields.length})</TabsTrigger>
           <TabsTrigger value="events">Events ({events.length})</TabsTrigger>
+          <TabsTrigger value="opportunities">Opportunities ({opportunities?.length || 0})</TabsTrigger>
           <TabsTrigger value="missing-signals">
             Missing Signals ({missingSignalsCount})
             {missingSignalsCount > 0 && <span className="ml-1">⚠</span>}
@@ -260,6 +270,60 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                           <TableCell className="font-medium">{event.name}</TableCell>
                           <TableCell className="text-sm text-slate-600">
                             {event.description || "—"}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="opportunities">
+          <Card>
+            <CardHeader>
+              <CardTitle>Opportunities</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {(opportunities?.length || 0) === 0 ? (
+                <p className="text-center py-8 text-slate-500">No opportunities yet</p>
+              ) : (
+                <div className="rounded-lg border overflow-hidden">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-slate-50">
+                        <TableHead className="font-semibold">Title</TableHead>
+                        <TableHead className="font-semibold">Status</TableHead>
+                        <TableHead className="font-semibold text-center">Impact</TableHead>
+                        <TableHead className="font-semibold text-center">Effort</TableHead>
+                        <TableHead className="font-semibold text-center">Confidence</TableHead>
+                        <TableHead className="font-semibold text-center">Ratio</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {opportunities?.map((opp: any) => (
+                        <TableRow key={opp.id} className="hover:bg-slate-50">
+                          <TableCell className="font-medium">
+                            <Link
+                              href={`/opportunities/${opp.id}`}
+                              className="text-blue-600 hover:text-blue-800 hover:underline"
+                            >
+                              {opp.title}
+                            </Link>
+                          </TableCell>
+                          <TableCell>
+                            <Badge className="capitalize">{opp.status || 'idea'}</Badge>
+                          </TableCell>
+                          <TableCell className="text-center">{opp.impact || '—'}</TableCell>
+                          <TableCell className="text-center">{opp.effort || '—'}</TableCell>
+                          <TableCell className="text-center">{opp.confidence || '—'}</TableCell>
+                          <TableCell className="text-center">
+                            {opp.impact && opp.effort
+                              ? (opp.impact / opp.effort).toFixed(1)
+                              : '—'
+                            }
                           </TableCell>
                         </TableRow>
                       ))}
