@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Package, Workflow, Shield, Lightbulb, Beaker, Sparkles, Upload, Search, Activity } from "lucide-react";
+import { LayoutDashboard, Package, Workflow, Shield, Lightbulb, Beaker, Sparkles, Upload, Search, Activity, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ const navItems = [
   { href: "/opportunities", label: "Opportunities", icon: Lightbulb },
   { href: "/experiments", label: "Experiments", icon: Beaker },
   { href: "/idea-bank", label: "Idea Bank", icon: Sparkles },
+  { href: "/seasonal-bank", label: "Seasonal Bank", icon: Calendar },
   { href: "/import", label: "Import", icon: Upload },
 ];
 
